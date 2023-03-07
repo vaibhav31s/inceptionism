@@ -26,7 +26,7 @@ const Sidebar = (props: Props) => {
         accept: "application/json",
       },
     };
-
+    toast("Image is Being Uploaded! Wait for a while to see it uploaded");
     axios
       .post("http://127.0.0.1:8000/images", formdata, {
         headers: {
@@ -37,18 +37,21 @@ const Sidebar = (props: Props) => {
       .then(function (response) {
         console.log(response);
         if (response.status == 200) {
-          toast("Image Uploaded Successfully!");
-          console.log("Image Uploaded Successfully!");
+          toast.success("Image Uploaded Successfully!");
+          // console.log("Image Uploaded Successfully!");
           //"dear user, please check etc..."
+        }else{
+          toast.warn("Image Uploaded UnSuccessfully!");
         }
       })
       .catch(function (error) {
-        () => toast("Image Uploaded UnSuccessfully!");
+        () => toast.warn("Image Uploaded UnSuccessfully!");
       });
   };
 
   const handleGetOutput = async () => {
     const fetchData = async () => {
+      toast("Image is Being Converted! Wait for a while to see the result");
       try {
         const response = await axios.post("http://127.0.0.1:8000/out", {
           layers: layer,
@@ -58,13 +61,13 @@ const Sidebar = (props: Props) => {
         });
         console.log(response.data);
         if(response.data.message == "Success"){
-          toast("Image Converted Successfully! Wait for a while to see the result");
+          toast.success("Image Converted Successfully! Wait for a while to see the result");
         }
 
         // setoImage(response.data)
       } catch (error) {
         console.error(error);
-        toast("Image UnSuccessfully Converted! Try Changing the parameters and retrying");
+        toast.warn("Image UnSuccessfully Converted! Try Changing/Reducing parameters and retrying");
       }
     };
 
