@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 type Props = {};
 
 const Sidebar = (props: Props) => {
@@ -36,8 +36,9 @@ const Sidebar = (props: Props) => {
       })
       .then(function (response) {
         console.log(response);
-        if (response.statusText === "OK") {
-          () => toast("Image Uploaded Successfully!");
+        if (response.status == 200) {
+          toast("Image Uploaded Successfully!");
+          console.log("Image Uploaded Successfully!");
           //"dear user, please check etc..."
         }
       })
@@ -55,10 +56,15 @@ const Sidebar = (props: Props) => {
           octaves: octaves,
           iterations: iterations,
         });
+        console.log(response.data);
+        if(response.data.message == "Success"){
+          toast("Image Converted Successfully! Wait for a while to see the result");
+        }
 
         // setoImage(response.data)
       } catch (error) {
         console.error(error);
+        toast("Image UnSuccessfully Converted! Try Changing the parameters and retrying");
       }
     };
 
@@ -76,9 +82,9 @@ const Sidebar = (props: Props) => {
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             Deep Dreamer
           </span>
-          <button onClick={() => toast("Image Uploaded Successfully!")}>
-            Vaibhav
-          </button>
+          {/* <button onClick={() => toast("Check is /*-!")}>
+            Toast checker
+          </button> */}
 
           <div className="mt-4">
             <h4 className="mb-4  text-sm font-semibold text-gray-600 dark:text-gray-300">
@@ -88,13 +94,13 @@ const Sidebar = (props: Props) => {
               <>
                 {" "}
                 <button
-                  className="py-2 px-4 shadow-md no-underline rounded-full bg-orange text-white font-sans font-semibold text-sm border-orange btn-primary hover:text-white hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
+                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black text-black  hover:text-white  font-sans font-semibold text-sm border-orange btn-primary hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
                   onClick={() => setIsImage(false)}
                 >
                   Choose Different Image
                 </button>{" "}
                 <button
-                  className="p-2 justify-center flex bg-black  text-white  rounded-sm m-2"
+                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black hover:text-white text-black font-sans font-semibold text-sm border-orange btn-primary  hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
                   onClick={handleSubmit}
                 >
                   Send
@@ -131,16 +137,19 @@ const Sidebar = (props: Props) => {
                         SVG, PNG, JPG or GIF (MAX. 800x400px)
                       </p>
                     </div>
-                    <input
-                      id="file_input"
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        console.log(e.target.files[0]);
-                        setImage(e.target.files[0]);
-                        setIsImage(true);
-                      }}
-                    />
+                    <div className="px-12 py-2">
+                      <input
+                        id="file_input"
+                        type="file"
+                        accept="image/*"
+                        className=""
+                        onChange={(e) => {
+                          console.log(e.target.files[0]);
+                          setImage(e.target.files[0]);
+                          setIsImage(true);
+                        }}
+                      />
+                    </div>
                   </label>
                 </div>
               </div>
@@ -212,9 +221,14 @@ const Sidebar = (props: Props) => {
               <span>1</span> <span>30</span>
             </div>
           </div>
-          <button onClick={() => handleGetOutput()} className="">
-            Get Output
-          </button>
+          <div className="mx-20 mt-2	">
+            <button
+              onClick={() => handleGetOutput()}
+              className=" bg-white hover:bg-black hover:text-white text-black font-bold py-2 px-4 border-b-4 border-black hover:border-gray-500 rounded"
+            >
+              Get Output
+            </button>
+          </div>
         </div>
       </aside>
     </div>
