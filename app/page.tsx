@@ -68,7 +68,7 @@ const  deepDream = (props: Props) => {
         data-drawer-toggle="logo-sidebar"
         aria-controls="logo-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-hidden focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -102,7 +102,7 @@ const  deepDream = (props: Props) => {
       <div className="p-4 sm:ml-96">
      
         <div>
-          <h1 className="text-center justify-start font-bold text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-gray-400 to-black">Current Image</h1>
+          <h1 className="text-center justify-start font-bold text-2xl font-extrabold text-transparent bg-clip-text bg-linear-to-b from-gray-400 to-black">Current Image</h1>
           
           <div className="m-2  rounded-2xl p-2">
           {iimage ? (
@@ -113,7 +113,7 @@ const  deepDream = (props: Props) => {
           </div>
         </div>
         <div>
-          <h1 className="text-center font-bold text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-gray-400 to-black">Output Image</h1>
+          <h1 className="text-center font-bold text-2xl font-extrabold text-transparent bg-clip-text bg-linear-to-b from-gray-400 to-black">Output Image</h1>
           <div className="m-2 rounded-2xl p-2">
               {oimage ? (
             <img   className="h-auto max-w-lg mx-auto rounded-xl h-[400px] w-[600px]"   src={URL.createObjectURL(new Blob([oimage], { type: 'image/jpeg' }))} />

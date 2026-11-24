@@ -4,14 +4,14 @@ import { ToastContainer, toast } from "react-toastify";
 type Props = {};
 
 const Sidebar = (props: Props) => {
-  const [layer, setLayer] = useState(10);
-  const [channel, setChannel] = useState(10);
-  const [octaves, setOctaves] = useState(10);
-  const [iterations, setIterations] = useState(10);
+  const [layer, setLayer] = useState<number | string>(10);
+  const [channel, setChannel] = useState<number | string>(10);
+  const [octaves, setOctaves] = useState<number | string>(10);
+  const [iterations, setIterations] = useState<number | string>(10);
 
   const [isImage, setIsImage] = useState(false);
   const [imageURL, setImageURL] = useState<string>("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<any>(null);
   const [isUpload, setIsUpload] = useState(false);
 
   const handleSubmit = (e: any) => {
@@ -97,13 +97,13 @@ const Sidebar = (props: Props) => {
               <>
                 {" "}
                 <button
-                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black text-black  hover:text-white  font-sans font-semibold text-sm border-orange btn-primary hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
+                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black text-black  hover:text-white  font-sans font-semibold text-sm border-orange btn-primary hover:bg-orange-light focus:outline-hidden active:shadow-none mr-2"
                   onClick={() => setIsImage(false)}
                 >
                   Choose Different Image
                 </button>{" "}
                 <button
-                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black hover:text-white text-black font-sans font-semibold text-sm border-orange btn-primary  hover:bg-orange-light focus:outline-none active:shadow-none mr-2"
+                  className="py-2 px-4 shadow-md no-underline rounded-full bg-white hover:bg-black hover:text-white text-black font-sans font-semibold text-sm border-orange btn-primary  hover:bg-orange-light focus:outline-hidden active:shadow-none mr-2"
                   onClick={handleSubmit}
                 >
                   Send
@@ -147,8 +147,8 @@ const Sidebar = (props: Props) => {
                         accept="image/*"
                         className=""
                         onChange={(e) => {
-                          console.log(e.target.files[0]);
-                          setImage(e.target.files[0]);
+                          console.log(e.target.files![0]);
+                          setImage(e.target.files![0]);
                           setIsImage(true);
                         }}
                       />
@@ -227,7 +227,7 @@ const Sidebar = (props: Props) => {
           <div className="mx-20 mt-2	">
             <button
               onClick={() => handleGetOutput()}
-              className=" bg-white hover:bg-black hover:text-white text-black font-bold py-2 px-4 border-b-4 border-black hover:border-gray-500 rounded"
+              className=" bg-white hover:bg-black hover:text-white text-black font-bold py-2 px-4 border-b-4 border-black hover:border-gray-500 rounded-sm"
             >
               Get Output
             </button>
